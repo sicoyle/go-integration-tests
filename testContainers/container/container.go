@@ -12,8 +12,9 @@ import (
 )
 
 const (
-	helloMsg = "Hello gophers!\n"
-	port     = "8081"
+	helloMsg  = "Hello gophers!\n"
+	port      = "8081"
+	sleepTime = 10 * time.Second
 )
 
 type myContainer struct {
@@ -30,7 +31,7 @@ func NewContainer(ctx context.Context, containerName, dockerContextDir, dockerFi
 		},
 		ExposedPorts: []string{fmt.Sprintf("%s/tcp", port)},
 		WaitingFor: wait.ForHTTP("/").
-			WithStartupTimeout(10 * time.Second).WithPort(port).
+			WithStartupTimeout(sleepTime).WithPort(port).
 			WithResponseMatcher(func(body io.Reader) bool {
 				data, err := ioutil.ReadAll(body)
 				if err != nil {
