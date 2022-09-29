@@ -1,0 +1,4 @@
+*.html
+dockerTest/
+*.idea/
+main

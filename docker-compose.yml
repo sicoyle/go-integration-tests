@@ -1,0 +1,15 @@
+version: '3.7'
+networks:
+  my-network:
+    driver: bridge
+services:
+  nginx:
+    image: docker.io/nginx:1.23.1
+    ports:
+      - "9080:80"
+    networks:
+      my-network: { }
+  my-container:
+    image: mycontainer:0.0.0
+    networks:
+      my-network: {}
